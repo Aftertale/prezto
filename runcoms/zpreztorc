@@ -15,6 +15,9 @@
 # Color output (auto set to 'no' on dumb terminals).
 zstyle ':prezto:*:*' color 'yes'
 
+# Theme
+zstyle 'prezto:module:prompt' theme powerlevel10k
+
 # Add additional directories to load prezto modules from
 # zstyle ':prezto:load' pmodule-dirs $HOME/.zprezto-contrib
 
@@ -32,14 +35,19 @@ zstyle ':prezto:*:*' color 'yes'
 zstyle ':prezto:load' pmodule \
   'environment' \
   'terminal' \
+  'syntax-highlighting' \
+  'history-substring-search' \
+  'autosuggestions' \
   'editor' \
   'history' \
   'directory' \
   'spectrum' \
   'utility' \
   'completion' \
+  'fasd' \
   'history-substring-search' \
-  'prompt'
+  'prompt' \
+  'fzf-tab' 
 
 #
 # Autosuggestions
@@ -51,6 +59,16 @@ zstyle ':prezto:load' pmodule \
 #
 # Completions
 #
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# preview directory's content with exa when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# switch group using `,` and `.`
+zstyle ':fzf-tab:*' switch-group ',' '.'
 
 # Set the entries to ignore in static '/etc/hosts' for host completion.
 # zstyle ':prezto:module:completion:*:hosts' etc-host-ignores \
