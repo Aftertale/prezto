@@ -16,20 +16,31 @@ export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:=$HOME/.config}"
 export ZDOTDIR="${ZDOTDIR:=$XDG_CONFIG_HOME/zsh}"
 source "$ZDOTDIR/.zshenv"
 
-export CDPATH="$HOME/code/src/github.com/updater:$CDPATH"
-eval "$(fasd --init auto)"
+export CDPATH="$HOME/code/src/github.com:$HOME/code/src/github.com/updater:$CDPATH"
+# eval "$(fasd --init auto)"
 
 # path stuffs
 export PATH=/Users/dillon.mcdowell/.local/bin:$PATH
 
 # add functions
-for file in $HOME/.config/zsh/functions/*(.); source $file
+#for file in $HOME/.config/zsh/functions/*.sh; source $file
 
 # add aliases
-for file in $HOME/.config/zsh/aliases/*(.); source $file
+for file in $HOME/.config/zsh/aliases/*.sh; source $file
 
 # autoload -U compinit; compinit
 FZF_COMPLETION_TRIGGER=''
+
+#########################################################
+#                                                       #
+#                     Aliases                           #
+#                                                       #
+#########################################################
+alias ij="open -na 'IntelliJ IDEA.app' --args $@"
+alias tf="terraform"
+alias vi="lvim"
+alias -g cat="bat"
+
 
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 # eval "$(starship init zsh)"
